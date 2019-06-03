@@ -427,13 +427,21 @@ void MRichTextEdit::list(bool checked, QTextListFormat::Style style) {
     cursor.endEditBlock();
 }
 
-void MRichTextEdit::mergeFormatOnWordOrSelection(const QTextCharFormat &format) {
+void MRichTextEdit::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
+{
     QTextCursor cursor = f_textedit->textCursor();
-    if (!cursor.hasSelection()) {
+    if (cursor.hasSelection())
+    {
+        f_textedit->mergeCurrentCharFormat(format);
+    }
+    else
+    {
         cursor.select(QTextCursor::WordUnderCursor);
-        }
-    cursor.mergeCharFormat(format);
-    f_textedit->mergeCurrentCharFormat(format);
+        cursor.mergeCharFormat(format);
+        // 因为cursor已经select了word，如果调用setTextCursor，edit也会选中word，所以不调用
+        //f_textedit->setTextCursor(cursor);
+    }
+
     f_textedit->setFocus(Qt::TabFocusReason);
 }
 
@@ -569,12 +577,12 @@ void MRichTextEdit::setText(const QString& text) {
     if (text.isEmpty()) {
         setPlainText(text);
         return;
-        }
+    }
     if (text[0] == '<') {
         setHtml(text);
       } else {
         setPlainText(text);
-        }
+    }
 }
 
 void MRichTextEdit::insertImage() {
@@ -587,7 +595,6 @@ void MRichTextEdit::insertImage() {
     QImage image = QImageReader(file).read();
 
     f_textedit->dropImage(image, QFileInfo(file).suffix().toUpper().toLocal8Bit().data() );
-
 }
 
 
