@@ -5,18 +5,19 @@
 #include <QMimeData>
 #include <QImage>
 
-class MTextEdit : public QTextEdit {
+class MTextEdit : public QTextEdit
+{
     Q_OBJECT
-  public:
-    MTextEdit(QWidget *parent);
 
-    void        dropImage(const QImage& image, const QString& format);
+  public:
+    explicit MTextEdit(QWidget *parent);
+
+    void dropImage(const QImage& image, const QString& format);
 
   protected:
-    bool        canInsertFromMimeData(const QMimeData *source) const;
-    void        insertFromMimeData(const QMimeData *source);
-    QMimeData  *createMimeDataFromSelection() const;
-
+    bool canInsertFromMimeData(const QMimeData *source) const;
+    void insertFromMimeData(const QMimeData *source);
+    QMimeData *createMimeDataFromSelection() const;
 };
 
 #endif
