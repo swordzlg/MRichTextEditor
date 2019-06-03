@@ -33,7 +33,7 @@
 class MRichTextEdit : public QWidget, protected Ui::MRichTextEdit {
     Q_OBJECT
   public:
-    MRichTextEdit(QWidget *parent = 0);
+    MRichTextEdit(QWidget *parent = nullptr);
 
     QString toPlainText() const { return f_textedit->toPlainText(); }
     QString toHtml() const;

@@ -39,9 +39,10 @@
 #include <QMenu>
 #include <QDialog>
 
-MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent) {
+MRichTextEdit::MRichTextEdit(QWidget *parent)
+    : QWidget(parent)
+{
     setupUi(this);
-    m_lastBlockList = 0;
     f_textedit->setTabStopWidth(40);
 
     connect(f_textedit, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
