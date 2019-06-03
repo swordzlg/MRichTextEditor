@@ -6,6 +6,7 @@ TEMPLATE = app
 TARGET = MRichTextEdit
 DEPENDPATH += .
 INCLUDEPATH += .
+CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
